@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout the source code from the repository
-                git url: 'https://github.com/yourorg/your-repo.git', branch: 'main'
+                git url: 'git@github.com:Mallisai/Test_webhook.git', branch: 'main'
             }
         }
         stage('Build') {
