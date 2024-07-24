@@ -1,1 +1,55 @@
+pipeline {
+    agent any
 
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout the source code from the repository
+                git url: 'https://github.com/yourorg/your-repo.git', branch: 'main'
+            }
+        }
+        stage('Build') {
+            steps {
+                // Execute shell commands to build the project
+                sh '''
+                echo "Building..."
+                # Add your build commands here
+                '''
+            }
+        }
+        stage('Test') {
+            steps {
+                // Execute shell commands to test the project
+                sh '''
+                echo "Testing..."
+                # Add your test commands here
+                '''
+            }
+        }
+        stage('Deploy') {
+            steps {
+                // Execute shell commands to deploy the project
+                sh '''
+                echo "Deploying..."
+                # Add your deploy commands here
+                '''
+            }
+        }
+    }
+
+    post {
+        always {
+            // Execute shell commands to clean up
+            sh '''
+            echo "Cleaning up..."
+            # Add your cleanup commands here
+            '''
+        }
+        success {
+            echo 'Pipeline succeeded.'
+        }
+        failure {
+            echo 'Pipeline failed.'
+        }
+    }
+}
