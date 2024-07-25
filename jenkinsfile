@@ -1,14 +1,1 @@
-pipeline {
-    agent any
 
-    stages {
-        stage('Checkout') {
-            steps {
-                // Checkout the source code from the repository
-                checkout([$class: 'GitSCM', 
-                    branches: [[name: '*/main']], 
-                    extensions: [], 
-                    userRemoteConfigs: [[credentialsId: 'github', url: 'git@github.com:Mallisai/Test_webhook.git']]
-                ])
-            }
-        }
