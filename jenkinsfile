@@ -5,51 +5,10 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout the source code from the repository
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github', url: 'git@github.com:Mallisai/Test_webhook.git']])
+                checkout([$class: 'GitSCM', 
+                    branches: [[name: '*/main']], 
+                    extensions: [], 
+                    userRemoteConfigs: [[credentialsId: 'github', url: 'git@github.com:Mallisai/Test_webhook.git']]
+                ])
             }
         }
-        stage('Build') {
-            steps {
-                // Execute shell commands to build the project
-                sh '''
-                echo "Building..."
-                # Add your build commands here
-                '''
-            }
-        }
-        stage('Test') {
-            steps {
-                // Execute shell commands to test the project
-                sh '''
-                echo "Testing..."
-                # Add your test commands here
-                '''
-            }
-        }
-        stage('Deploy') {
-            steps {
-                // Execute shell commands to deploy the project
-                sh '''
-                echo "Deploying..."
-                # Add your deploy commands here
-                '''
-            }
-        }
-    }
-
-    post {
-        always {
-            // Execute shell commands to clean up
-            sh '''
-            echo "Cleaning up..."
-            # Add your cleanup commands here
-            '''
-        }
-        success {
-            echo 'Pipeline succeeded.'
-        }
-        failure {
-            echo 'Pipeline failed.'
-        }
-    }
-}
